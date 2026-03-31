@@ -16,7 +16,7 @@ function Timeline() {
         <VerticalTimeline>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            contentStyle={{ background: 'white', color: 'rgb(39, 40, 34)' }}
+            contentStyle={{ background: 'white' }}
             contentArrowStyle={{ borderRight: '7px solid white' }}
             date="2024 – present"
             iconStyle={{ background: '#5000ca', color: 'white' }}
