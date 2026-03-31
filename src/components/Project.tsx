@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from '../context/LanguageContext';
 import '../assets/styles/Project.scss';
 
 interface ProjectCardProps {
@@ -35,48 +36,22 @@ function ProjectCard({ title, description, tech, gradient, icon }: ProjectCardPr
   );
 }
 
-const projects = [
-  {
-    title: "Multi-Agent AI Orchestrator",
-    description: "File-based orchestrator that routes requests to specialized Claude Code agents. Auto-selects agents based on task type using Bash and file architecture.",
-    tech: ["Claude Code", "Bash", "AI Orchestration", "Multi-Agent Systems"],
-    gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-    icon: "🤖",
-  },
-  {
-    title: "PlanHub",
-    description: "Modular project management platform with real-time collaboration, task tracking, and WebSocket-based live updates.",
-    tech: ["Go", "React", "PostgreSQL", "WebSockets", "Docker"],
-    gradient: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
-    icon: "📋",
-  },
-  {
-    title: "Smart Inventory",
-    description: "QR-code-based inventory system for homelab and household items. Progressive Web App with offline support.",
-    tech: ["Go", "Svelte", "QR Codes", "PWA", "PostgreSQL"],
-    gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-    icon: "📦",
-  },
-  {
-    title: "Self-Hosted Homelab",
-    description: "Production homelab on Proxmox with LXC containers hosting Glance dashboard, Vaultwarden, Uptime Kuma, and custom apps.",
-    tech: ["Proxmox", "LXC", "Docker", "Caddy", "Linux"],
-    gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-    icon: "🖥️",
-  },
-  {
-    title: "Bachelor Thesis: Low-Code Analysis",
-    description: "Comparative research on low-code platforms vs traditional development. Programmatic document generation pipeline.",
-    tech: ["Research", "JavaScript", "docx", "Academic Writing"],
-    gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-    icon: "📝",
-  },
+const projectMeta = [
+  { tech: ["Claude Code", "Bash", "AI Orchestration", "Multi-Agent Systems"], gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", icon: "🤖" },
+  { tech: ["Go", "React", "PostgreSQL", "WebSockets", "Docker"], gradient: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)", icon: "📋" },
+  { tech: ["Go", "Svelte", "QR Codes", "PWA", "PostgreSQL"], gradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)", icon: "📦" },
+  { tech: ["Proxmox", "LXC", "Docker", "Caddy", "Linux"], gradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", icon: "🖥️" },
+  { tech: ["Research", "JavaScript", "docx", "Academic Writing"], gradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)", icon: "📝" },
 ];
 
 function Project() {
+  const { t } = useLanguage();
+
+  const projects = t.projects.items.map((item, i) => ({ ...item, ...projectMeta[i] }));
+
   return (
     <div className="projects-container" id="projects">
-      <h1>Personal Projects</h1>
+      <h1>{t.projects.title}</h1>
       <div className="projects-grid">
         {projects.map((project, index) => (
           <ProjectCard key={index} {...project} />

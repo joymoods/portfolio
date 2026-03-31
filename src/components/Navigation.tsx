@@ -8,6 +8,9 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useLanguage, Language } from '../context/LanguageContext';
 import List from '@mui/material/List';
 import ListIcon from '@mui/icons-material/List';
 import ListItem from '@mui/material/ListItem';
@@ -17,14 +20,24 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 
 const drawerWidth = 240;
-const navItems = [['Expertise', 'expertise'], ['History', 'history'], ['Projects', 'projects'], ['Contact', 'contact']];
+
+const flags: Record<Language, string> = { en: '🇬🇧', de: '🇩🇪' };
+const languageLabels: Record<Language, string> = { en: 'English', de: 'Deutsch' };
 
 function Navigation({parentToChild, modeChange}: any) {
 
   const {mode} = parentToChild;
+  const { language, setLanguage, t } = useLanguage();
+
+  const navItems = [
+    [t.nav.expertise, 'expertise'],
+    [t.nav.history, 'history'],
+    [t.nav.projects, 'projects'],
+  ];
 
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [langAnchor, setLangAnchor] = useState<null | HTMLElement>(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -92,12 +105,35 @@ function Navigation({parentToChild, modeChange}: any) {
           ) : (
             <DarkModeIcon onClick={() => modeChange()}/>
           )}
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item[0]} onClick={() => scrollToSection(item[1])} sx={{ color: '#fff' }}>
                 {item[0]}
               </Button>
             ))}
+          </Box>
+          <Box sx={{ marginLeft: 'auto' }}>
+            <IconButton
+              onClick={(e) => setLangAnchor(e.currentTarget)}
+              sx={{ color: '#fff', fontSize: '1.4rem' }}
+            >
+              {flags[language]}
+            </IconButton>
+            <Menu
+              anchorEl={langAnchor}
+              open={Boolean(langAnchor)}
+              onClose={() => setLangAnchor(null)}
+            >
+              {(Object.keys(flags) as Language[]).map((lang) => (
+                <MenuItem
+                  key={lang}
+                  selected={lang === language}
+                  onClick={() => { setLanguage(lang); setLangAnchor(null); }}
+                >
+                  {flags[lang]}&nbsp;&nbsp;{languageLabels[lang]}
+                </MenuItem>
+              ))}
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>

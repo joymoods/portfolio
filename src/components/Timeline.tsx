@@ -1,65 +1,60 @@
 import '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase, faGraduationCap, faServer, faCode } from '@fortawesome/free-solid-svg-icons';
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import { useLanguage } from '../context/LanguageContext';
 import '../assets/styles/Timeline.scss'
 
 function Timeline() {
+  const { t } = useLanguage();
+
   return (
     <div id="history">
       <div className="items-container">
-        <h1>Education & Journey</h1>
+        <h1>{t.timeline.title}</h1>
         <VerticalTimeline>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
             contentStyle={{ background: 'white', color: 'rgb(39, 40, 34)' }}
-            contentArrowStyle={{ borderRight: '7px solid  white' }}
-            date="since 2023"
-            iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
+            contentArrowStyle={{ borderRight: '7px solid white' }}
+            date="2024 – present"
+            iconStyle={{ background: '#5000ca', color: 'white' }}
             icon={<FontAwesomeIcon icon={faBriefcase} />}
           >
-            <h3 className="vertical-timeline-element-title">AI-Driven App Developer</h3>
-            <h4 className="vertical-timeline-element-subtitle">Self-Employed / Freelance</h4>
-            <p>
-              Building multi-agent AI systems, full-stack web applications, and self-hosted infrastructure. Focus on LLM integration with Claude API, Go backends, and React/Svelte frontends.
-            </p>
+            <h3 className="vertical-timeline-element-title">{t.timeline.entry1.title}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{t.timeline.entry1.subtitle}</h4>
+            <p>{t.timeline.entry1.description}</p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="since 2022"
-            iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
-            icon={<FontAwesomeIcon icon={faBriefcase} />}
+            date="2023 – present"
+            iconStyle={{ background: '#5000ca', color: 'white' }}
+            icon={<FontAwesomeIcon icon={faServer} />}
           >
-            <h3 className="vertical-timeline-element-title">B.Sc. Wirtschaftsinformatik</h3>
-            <h4 className="vertical-timeline-element-subtitle">IU Internationale Hochschule, Leipzig</h4>
-            <p>
-              Studying Business Informatics with focus on software development, system architecture, and digital transformation. Bachelor thesis on low-code platform analysis.
-            </p>
+            <h3 className="vertical-timeline-element-title">{t.timeline.entry2.title}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{t.timeline.entry2.subtitle}</h4>
+            <p>{t.timeline.entry2.description}</p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="since 2023"
-            iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
-            icon={<FontAwesomeIcon icon={faBriefcase} />}
+            date="2023"
+            iconStyle={{ background: '#5000ca', color: 'white' }}
+            icon={<FontAwesomeIcon icon={faCode} />}
           >
-            <h3 className="vertical-timeline-element-title">Homelab & Infrastructure Engineering</h3>
-            <h4 className="vertical-timeline-element-subtitle">Personal Project</h4>
-            <p>
-              Built and maintained a self-hosted Proxmox homelab with LXC containers, Docker services, and Caddy reverse proxy — hosting Glance, Vaultwarden, Uptime Kuma, and custom apps.
-            </p>
+            <h3 className="vertical-timeline-element-title">{t.timeline.entry3.title}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{t.timeline.entry3.subtitle}</h4>
+            <p>{t.timeline.entry3.description}</p>
           </VerticalTimelineElement>
           <VerticalTimelineElement
             className="vertical-timeline-element--work"
-            date="since 2024"
-            iconStyle={{ background: '#5000ca', color: 'rgb(39, 40, 34)' }}
-            icon={<FontAwesomeIcon icon={faBriefcase} />}
+            date="2022 – present"
+            iconStyle={{ background: '#5000ca', color: 'white' }}
+            icon={<FontAwesomeIcon icon={faGraduationCap} />}
           >
-            <h3 className="vertical-timeline-element-title">Full-Stack Development</h3>
-            <h4 className="vertical-timeline-element-subtitle">Exploration & Learning</h4>
-            <p>
-              Deep-dived into Go, React, TypeScript, and PostgreSQL. Built first production-ready web apps with real-time features, REST APIs, and containerized deployments.
-            </p>
+            <h3 className="vertical-timeline-element-title">{t.timeline.entry4.title}</h3>
+            <h4 className="vertical-timeline-element-subtitle">{t.timeline.entry4.subtitle}</h4>
+            <p>{t.timeline.entry4.description}</p>
           </VerticalTimelineElement>
         </VerticalTimeline>
       </div>

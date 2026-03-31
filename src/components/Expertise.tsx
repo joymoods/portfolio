@@ -3,6 +3,7 @@ import '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReact, faDocker, faGolang } from '@fortawesome/free-brands-svg-icons';
 import Chip from '@mui/material/Chip';
+import { useLanguage } from '../context/LanguageContext';
 import '../assets/styles/Expertise.scss';
 
 const labelsFirst = [
@@ -40,17 +41,19 @@ const labelsThird = [
 ];
 
 function Expertise() {
+    const { t } = useLanguage();
+
     return (
     <div className="container" id="expertise">
         <div className="skills-container">
-            <h1>Expertise</h1>
+            <h1>{t.expertise.title}</h1>
             <div className="skills-grid">
                 <div className="skill">
                     <FontAwesomeIcon icon={faReact} size="3x"/>
-                    <h3>Full-Stack Development</h3>
-                    <p>I build scalable, modular web applications from the ground up — from responsive React/Svelte frontends to robust Go and Node.js backends. Strong focus on clean architecture, real-time features via WebSockets, and RESTful APIs.</p>
+                    <h3>{t.expertise.card1.title}</h3>
+                    <p>{t.expertise.card1.description}</p>
                     <div className="flex-chips">
-                        <span className="chip-title">Tech stack:</span>
+                        <span className="chip-title">{t.expertise.techStack}</span>
                         {labelsFirst.map((label, index) => (
                             <Chip key={index} className='chip' label={label} />
                         ))}
@@ -59,10 +62,10 @@ function Expertise() {
 
                 <div className="skill">
                     <FontAwesomeIcon icon={faDocker} size="3x"/>
-                    <h3>DevOps & Self-Hosted Infrastructure</h3>
-                    <p>I run a production-grade homelab on Proxmox with LXC containers and Docker — hosting dashboards, password managers, uptime monitors, and custom apps. I configure reverse proxies with Caddy and manage Linux systems end-to-end.</p>
+                    <h3>{t.expertise.card2.title}</h3>
+                    <p>{t.expertise.card2.description}</p>
                     <div className="flex-chips">
-                        <span className="chip-title">Tech stack:</span>
+                        <span className="chip-title">{t.expertise.techStack}</span>
                         {labelsSecond.map((label, index) => (
                             <Chip key={index} className='chip' label={label} />
                         ))}
@@ -71,10 +74,10 @@ function Expertise() {
 
                 <div className="skill">
                     <FontAwesomeIcon icon={faGolang} size="3x"/>
-                    <h3>AI & Multi-Agent Systems</h3>
-                    <p>I design and build AI-driven workflows using the Claude API — from simple LLM integrations to complex multi-agent orchestration systems. I focus on task routing, agent specialization, and building reliable, file-based coordination architectures.</p>
+                    <h3>{t.expertise.card3.title}</h3>
+                    <p>{t.expertise.card3.description}</p>
                     <div className="flex-chips">
-                        <span className="chip-title">Tech stack:</span>
+                        <span className="chip-title">{t.expertise.techStack}</span>
                         {labelsThird.map((label, index) => (
                             <Chip key={index} className='chip' label={label} />
                         ))}
