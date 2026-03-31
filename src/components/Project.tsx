@@ -26,12 +26,12 @@ function ProjectCard({ title, description, tech, gradient, icon }: ProjectCardPr
         {icon}
       </div>
       <h2>{title}</h2>
-      <p>{description}</p>
       <div className="tech-tags">
         {tech.map((t, i) => (
           <span key={i} className="tech-tag">{t}</span>
         ))}
       </div>
+      <p>{description}</p>
     </div>
   );
 }
